@@ -12,8 +12,7 @@ const Ramen = () => {
         </aside>
         <main className='basis-[calc(100%-200px)] min-h-[100vh] grid grid-rows-[auto_1fr_auto]'>
             <Heading/>
-            <RamenTable/>
-          {/* <RamenTable /> */}
+            <RamenTable />
           <Footer />
         </main>
       </section>

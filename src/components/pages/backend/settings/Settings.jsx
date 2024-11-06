@@ -2,10 +2,13 @@ import React from "react";
 import Heading from "../partials/Heading";
 import Navigation from "../partials/Navigation";
 import Footer from "../partials/Footer";
+import Promo from "./promo/Promo";
+import Mop from "./mop/Mop";
+import Category from "./category/Category";
 
 const Settings = () => {
   const [currentSettings, setCurrentSettings] = React.useState(0);
-  const settingsTable = [];
+  const settingsTable = [<Category/>, <Mop/>, <Promo/>];
 
   const handleSettingTab = (index) => setCurrentSettings(index);
 
@@ -26,9 +29,8 @@ const Settings = () => {
             </ul>
           </nav>
 
-          {/* {settingsTable[currentSettings]} */}
+          {settingsTable[currentSettings]}
         </div>
-
         <Footer />
       </main>
     </section>

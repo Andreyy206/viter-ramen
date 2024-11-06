@@ -1,7 +1,9 @@
 import { imgPath } from "@/components/helpers/functions-general";
 import {
+  Dessert,
   LayoutDashboard,
   ReceiptText,
+  Shell,
   Soup,
   Star,
 } from "lucide-react";
@@ -39,13 +41,24 @@ const Navigation = ({ menu= "" }) => {
               <Soup size={18} strokeWidth={1} /> Ramen{" "}
             </Link>
           </li>
+
+          <li>
+            <Link
+              to='/admin/toppings'
+              className={`${menu === "movies" ? "active" : ""} nav-link`}
+            >
+              {" "}
+              <Shell size={18} strokeWidth={1} /> Toppings{" "}
+            </Link>
+          </li>
+
           <li>
             <Link
               to='/admin/sides-dessert'
               className={`${menu === "movies" ? "active" : ""} nav-link`}
             >
               {" "}
-              <Soup size={18} strokeWidth={1} /> Sides & Dessert{" "}
+              <Dessert size={18} strokeWidth={1} /> Sides & Dessert{" "}
             </Link>
           </li>
           

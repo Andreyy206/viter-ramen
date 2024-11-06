@@ -2,7 +2,7 @@ import React from 'react'
 import Navigation from '../partials/Navigation';
 import Footer from '../partials/Footer';
 import Heading from '../partials/Heading';
-import SidesDessertTable from './SideDessertTable';
+import SidesDessertTable from './SidesDessertTable';
 
 const SidesDessert = () => {
   return (
