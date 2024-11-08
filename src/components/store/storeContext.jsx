@@ -29,6 +29,7 @@ const initVal = {
 
   isUploadFile: false,
   credentials: {},
+  cart:[],
 };
 
 const StoreContext = React.createContext();

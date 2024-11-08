@@ -4,7 +4,7 @@ import ModalWrapper from './ModalWrapper';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { queryData } from '@/components/helpers/queryData';
 import { StoreContext } from '@/components/store/storeContext';
-import { setIsConfirm, setSuccess } from '@/components/store/storeAction';
+import { setIsConfirm, setMessage, setSuccess } from '@/components/store/storeAction';
 
 
 const ModalConfirm = ({ mysqlApiArchive, queryKey, active, setIsSuccess }) => {
@@ -19,7 +19,9 @@ const ModalConfirm = ({ mysqlApiArchive, queryKey, active, setIsSuccess }) => {
       if (data.success) {
         dispatch(setIsConfirm(false))
         dispatch(setSuccess(true))
-      } else {
+        dispatch(setMessage("Record updated"))
+      } 
+      else {
         dispatch(setError(true))
         dispatch(setMessage(data.error))
 

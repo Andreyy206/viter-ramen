@@ -15,7 +15,7 @@ import { queryData } from "@/components/helpers/queryData";
 import { InputText } from "@/components/helpers/formInputs";
 import SpinnerButton from "../partials/spinners/SpinnerButton";
 
-const SidesDrinksModalAdd = ({ itemEdit }) => {
+const DessertModalAdd = ({ itemEdit }) => {
   const { dispatch } = React.useContext(StoreContext);
   const handleClose = () => dispatch(setIsAdd(false));
 
@@ -23,14 +23,14 @@ const SidesDrinksModalAdd = ({ itemEdit }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        itemEdit ? `/v1/drinks/${itemEdit.drinks_aid}` : `/v1/drinks`,
+        itemEdit ? `/v1/dessert/${itemEdit.dessert_aid}` : `/v1/dessert`,
         itemEdit ? "put" : "post",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({
-        queryKey: ["drinks"],
+        queryKey: ["dessert"],
       });
 
       // show error box
@@ -46,18 +46,16 @@ const SidesDrinksModalAdd = ({ itemEdit }) => {
   });
 
   const initVal = {
-    drinks_title: itemEdit ? itemEdit.drinks_title : "",
-    drinks_price: itemEdit ? itemEdit.drinks_price : "",
-    drinks_description: itemEdit ? itemEdit.drinks_description : "",
-    drinks_category: itemEdit ? itemEdit.drinks_category : "",
-    drinks_title_old: itemEdit ? itemEdit.drinks_title : "",
+    dessert_title: itemEdit ? itemEdit.dessert_title : "",
+    dessert_price: itemEdit ? itemEdit.dessert_price : "",
+    dessert_description: itemEdit ? itemEdit.dessert_description : "",
+    dessert_title_old: itemEdit ? itemEdit.dessert_title : "",
   };
 
   const yupSchema = Yup.object({
-    drinks_title: Yup.string().required("Required"),
-    drinks_price: Yup.string().required("Required"),
-    drinks_description: Yup.string().required("Required"),
-    drinks_category: Yup.string().required("Required"),
+    dessert_title: Yup.string().required("Required"),
+    dessert_price: Yup.string().required("Required"),
+    dessert_description: Yup.string().required("Required"),
   });
 
   return (
@@ -74,7 +72,7 @@ const SidesDrinksModalAdd = ({ itemEdit }) => {
             <Form>
               <div className='modal-main absolute top-0 right-0 h-[100dvh] w-[320px] bg-primary border-l border-line grid grid-rows-[auto,_1fr,_auto] animate-slideLeft'>
                 <div className='modal-header p-3 px-4 pb-0 flex justify-between items-center self-start'>
-                  <h5 className='mb-0'>{itemEdit ? "Edit" : "Add"} Drink</h5>
+                  <h5 className='mb-0'>{itemEdit ? "Edit" : "Add"} Dessert</h5>
                   <button onClick={handleClose}>
                     <X />
                   </button>
@@ -83,9 +81,9 @@ const SidesDrinksModalAdd = ({ itemEdit }) => {
                 <div className='modal-body  p-3 px-4 '>
                   <div className='input-wrap'>
                     <InputText
-                      label='Drink'
+                      label='Dessert'
                       type='Text'
-                      name='drinks_title'
+                      name='dessert_title'
                       disabled={mutation.isPending}
                     />
                   </div>
@@ -93,7 +91,7 @@ const SidesDrinksModalAdd = ({ itemEdit }) => {
                     <InputText
                       label='Price'
                       type='text'
-                      name='drinks_price'
+                      name='dessert_price'
                       disabled={mutation.isPending}
                     />
                   </div>
@@ -101,15 +99,7 @@ const SidesDrinksModalAdd = ({ itemEdit }) => {
                     <InputText
                       label='Description'
                       type='text'
-                      name='drinks_description'
-                      disabled={mutation.isPending}
-                    />
-                  </div>
-                  <div className='input-wrap relative'>
-                    <InputText
-                      label='Category'
-                      type='text'
-                      name='drinks_category'
+                      name='dessert_description'
                       disabled={mutation.isPending}
                     />
                   </div>
@@ -138,4 +128,4 @@ const SidesDrinksModalAdd = ({ itemEdit }) => {
   );
 };
 
-export default SidesDrinksModalAdd;
+export default DessertModalAdd;

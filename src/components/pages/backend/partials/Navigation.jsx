@@ -35,7 +35,7 @@ const Navigation = ({ menu= "" }) => {
           <li>
             <Link
               to='/admin/ramen'
-              className={`${menu === "movies" ? "active" : ""} nav-link`}
+              className={`${menu === "ramen" ? "active" : ""} nav-link`}
             >
               {" "}
               <Soup size={18} strokeWidth={1} /> Ramen{" "}
@@ -45,7 +45,7 @@ const Navigation = ({ menu= "" }) => {
           <li>
             <Link
               to='/admin/toppings'
-              className={`${menu === "movies" ? "active" : ""} nav-link`}
+              className={`${menu === "toppings" ? "active" : ""} nav-link`}
             >
               {" "}
               <Shell size={18} strokeWidth={1} /> Toppings{" "}
@@ -55,7 +55,7 @@ const Navigation = ({ menu= "" }) => {
           <li>
             <Link
               to='/admin/sides-dessert'
-              className={`${menu === "movies" ? "active" : ""} nav-link`}
+              className={`${menu === "dessert" ? "active" : ""} nav-link`}
             >
               {" "}
               <Dessert size={18} strokeWidth={1} /> Sides & Dessert{" "}
@@ -65,7 +65,7 @@ const Navigation = ({ menu= "" }) => {
           <li>
             <Link
               to='/admin/sides-drinks'
-              className={`${menu === "movies" ? "active" : ""} nav-link`}
+              className={`${menu === "drinks" ? "active" : ""} nav-link`}
             >
               {" "}
               <Soup size={18} strokeWidth={1} /> Sides & Drinks{" "}

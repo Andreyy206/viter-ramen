@@ -11,6 +11,9 @@ if (array_key_exists("dessertid", $_GET)) {
 checkPayload($data);
 
 $dessert->dessert_title = checkIndex($data, "dessert_title");
+$dessert->dessert_price = checkIndex($data, "dessert_price");
+$dessert->dessert_description = checkIndex($data, "dessert_description");
+
 $dessert->dessert_is_active = 1;
 $dessert->dessert_created = date("Y-m-d H:i:s");
 $dessert->dessert_datetime = date("Y-m-d H:i:s");

@@ -4,7 +4,7 @@ import Header from "./Header";
 
 const Banner = () => {
   return (
-    <section className="bg-[url('./public/img/banner.webp')] bg-cover bg-no-repeat bg-[left_top_-400px] min-h-screen relative ">
+    <section className="bg-[url('./public/img/banner.webp')] bg-cover bg-no-repeat md:bg-[left_top_-400px] min-h-screen relative ">
       <div className='container'>
         <Header/>
         <div className='absolute top-[14vw] left-1/2 -translate-x-1/2 text-center uppercase'>

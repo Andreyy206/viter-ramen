@@ -4,7 +4,7 @@ import { CheckCircle, X } from 'lucide-react'
 import React from 'react'
 
 const ToastSuccess = () => {
-  const {dispatch } = React.useContext(StoreContext);
+  const {dispatch, store } = React.useContext(StoreContext);
   const handleClose = () => dispatch(setSuccess(false))
 
   React.useEffect(() => {
@@ -18,7 +18,7 @@ const ToastSuccess = () => {
         <div className='grid place-content-center bg-success basis-[34px] size-[34px]'>
           <CheckCircle size={18} className='text-white' />
         </div>
-        <p className='basis-[80%] p-1.5 mb-0 '>Record Succesfully Updated!</p>
+        <p className='basis-[80%] p-1.5 mb-0 '>{store.message}</p>
         <button className='basis-[10%]' onClick= {handleClose}>
           <X size={14} />
         </button>
@@ -28,3 +28,4 @@ const ToastSuccess = () => {
 };
 
 export default ToastSuccess
+  

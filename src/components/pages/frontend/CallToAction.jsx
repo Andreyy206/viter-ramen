@@ -10,7 +10,7 @@ const CallToAction = () => {
           <h2 className='text-center uppercase text-accent'>
             Join us For Happy Hour
           </h2>
-          <p className='text-center justify-center flex uppercase font-bold items-center text-black mb-0'>
+          <p className='text-center justify-center flex lg:flex-row space-y-6 lg:space-y-0 uppercase font-bold items-center text-black mb-0'>
             3-6pm / 9-11pm <Dot /> 50 off all beer | wednesday 5-11pm <Dot /> 10
             Sake caraffes
           </p>

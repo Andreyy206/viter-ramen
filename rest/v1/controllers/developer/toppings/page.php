@@ -4,13 +4,13 @@ require '../../../core/header.php';
 // use needed functions
 require '../../../core/functions.php';
 // use needed classes
-require '../../../models/developer/drinks/Drinks.php';
+require '../../../models/developer/Toppings.php';
 // check database connection
 
 $conn = null;
 $conn = checkDbConnection();
 // make instance of classes
-$drinks = new Drinks($conn);
+$toppings = new Toppings($conn);
 $response = new Response();
 // validate api key
 if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
@@ -19,17 +19,17 @@ if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
 
     if (array_key_exists("start", $_GET)) {
         // get data
-        $drinks->drinks_start = $_GET['start'];
-        $drinks->drinks_total = 20;
-        checkLimitId($drinks->drinks_start, $drinks->drinks_total);
-        $query = checkReadLimit($drinks);
-        $total_result = checkReadAll($drinks);
+        $toppings->toppings_start = $_GET['start'];
+        $toppings->toppings_total = 15;
+        checkLimitId($toppings->toppings_start, $toppings->toppings_total);
+        $query = checkReadLimit($toppings);
+        $total_result = checkReadAll($toppings);
         http_response_code(200);
         checkReadQuery(
             $query,
             $total_result,
-            $drinks->drinks_total,
-            $drinks->drinks_start
+            $toppings->toppings_total,
+            $toppings->toppings_start
         );
     }
     // return 404 error if endpoint not available

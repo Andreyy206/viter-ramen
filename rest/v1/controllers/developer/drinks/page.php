@@ -4,7 +4,7 @@ require '../../../core/header.php';
 // use needed functions
 require '../../../core/functions.php';
 // use needed classes
-require '../../../models/developer/drinks/Drinks.php';
+require '../../../models/developer/Drinks.php';
 // check database connection
 
 $conn = null;
@@ -20,7 +20,7 @@ if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
     if (array_key_exists("start", $_GET)) {
         // get data
         $drinks->drinks_start = $_GET['start'];
-        $drinks->drinks_total = 20;
+        $drinks->drinks_total = 15;
         checkLimitId($drinks->drinks_start, $drinks->drinks_total);
         $query = checkReadLimit($drinks);
         $total_result = checkReadAll($drinks);

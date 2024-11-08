@@ -1,8 +1,11 @@
 <?php
+// set http header
+require '../../../core/header.php';
+// use needed functions
+require '../../../core/functions.php';
+// use needed classes
+require '../../../models/developer/Dessert.php';
 
-require '../../../../core/header.php';
-require '../../../../core/functions.php';
-require '../../../../models/developer/Dessert.php';
 $conn = null;
 $conn = checkDbConnection();
 $dessert = new Dessert($conn);

@@ -11,7 +11,6 @@ import React from "react";
 import LoaderTable from "../partials/LoaderTable";
 import NoData from "../partials/icons/NoData";
 import ServerError from "../partials/icons/ServerError";
-import SpinnerTable from "../partials/spinners/SpinnerTable";
 import { StoreContext } from "@/components/store/storeContext";
 import SearchBar from "../partials/SearchBar";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -28,9 +27,9 @@ import ModalConfirm from "../partials/modals/ModalConfirm";
 import ModalDelete from "../partials/modals/ModalDelete";
 import ToastSuccess from "../partials/ToastSuccess";
 import ModalValidate from "../partials/modals/ModalValidate";
-import ToppingsModalAdd from "./ToppingsModalAdd";
+import DessertModalAdd from "./DessertModalAdd";
 
-const ToppingsTable = () => {
+const DessertTable = () => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [id, setId] = React.useState(null);
   const [onSearch, setOnSearch] = React.useState(false);
@@ -52,11 +51,11 @@ const ToppingsTable = () => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["toppings", onSearch, store.isSearch],
+    queryKey: ["dessert", onSearch, store.isSearch],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `/v1/toppings/search`, // search endpoint
-        `/v1/toppings/page/${pageParam}`, // list endpoint
+        `/v1/dessert/search`, // search endpoint
+        `/v1/dessert/page/${pageParam}`, // list endpoint
         store.isSearch, // search boolean
         { searchValue: search.current.value, id: "" } // search value
       ),
@@ -80,17 +79,17 @@ const ToppingsTable = () => {
   };
   const handleDelete = (item) => {
     dispatch(setIsDelete(true));
-    setId(item.toppings_aid);
+    setId(item.dessert_aid);
   };
   const handleArchive = (item) => {
     dispatch(setIsConfirm(true));
     setIsActive(0);
-    setId(item.toppings_aid);
+    setId(item.dessert_aid);
   };
   const handleRestore = (item) => {
     dispatch(setIsConfirm(true));
     setIsActive(1);
-    setId(item.toppings_aid);
+    setId(item.dessert_aid);
   };
 
   return (
@@ -152,13 +151,13 @@ const ToppingsTable = () => {
                       <tr key={key}>
                         <td>{count} </td>
                         <td>
-                          <Pill isActive={item.toppings_is_active} />
+                          <Pill isActive={item.dessert_is_active} />
                         </td>
-                        <td>{item.toppings_title} </td>
+                        <td>{item.dessert_title} </td>
                         <td>200 </td>
                         <td>
                           <ul className='table-action translate-y-2'>
-                            {item.toppings_is_active ? (
+                            {item.dessert_is_active ? (
                               <>
                                 <li>
                                   <button
@@ -220,16 +219,19 @@ const ToppingsTable = () => {
         </div>
       </div>
 
-      {store.isAdd && <ToppingsModalAdd itemEdit={itemEdit} />}
+      {store.isAdd && <DessertModalAdd itemEdit={itemEdit} />}
       {store.isConfirm && (
         <ModalConfirm
-          queryKey='toppings'
-          mysqlApiArchive={`/v1/toppings/active/${id}`}
+          queryKey='dessert'
+          mysqlApiArchive={`/v1/dessert/active/${id}`}
           active={isActive}
         />
       )}
       {store.isDelete && (
-        <ModalDelete mysqlApiDelete={`/v1/toppings/${id}`} queryKey='toppings' />
+        <ModalDelete
+          mysqlApiDelete={`/v1/dessert/${id}`}
+          queryKey='dessert'
+        />
       )}
 
       {store.success && <ToastSuccess />}
@@ -238,4 +240,4 @@ const ToppingsTable = () => {
   );
 };
 
-export default ToppingsTable;
+export default DessertTable;

@@ -2,26 +2,26 @@
 $conn = null;
 $conn = checkDbConnection();
 
-$drinks = new Drinks($conn);
+$ramen = new Ramen($conn);
 
-if (array_key_exists("drinksid", $_GET)) {
+if (array_key_exists("ramenid", $_GET)) {
     checkEndpoint();
 }
 
 checkPayload($data);
 
-$drinks->drinks_title = checkIndex($data, "drinks_title");
-$drinks->drinks_price = checkIndex($data, "drinks_price");
-$drinks->drinks_description = checkIndex($data, "drinks_description");
-$drinks->drinks_category = checkIndex($data, "drinks_category");
-$drinks->drinks_photo = checkIndex($data, "drinks_photo");
+$ramen->ramen_title = checkIndex($data, "ramen_title");
+$ramen->ramen_price = checkIndex($data, "ramen_price");
+$ramen->ramen_description = checkIndex($data, "ramen_description");
+$ramen->ramen_category = checkIndex($data, "ramen_category");
+$ramen->ramen_photo = checkIndex($data, "ramen_photo");
 
-$drinks->drinks_is_active = 1;
-$drinks->drinks_created = date("Y-m-d H:i:s");
-$drinks->drinks_datetime = date("Y-m-d H:i:s");
+$ramen->ramen_is_active = 1;
+$ramen->ramen_created = date("Y-m-d H:i:s");
+$ramen->ramen_datetime = date("Y-m-d H:i:s");
 
 
-isNameExist($drinks, $drinks->drinks_title);
+isNameExist($ramen, $ramen->ramen_title);
 
-$query = checkCreate($drinks);
-returnSuccess($drinks, "drinks", $query);
+$query = checkCreate($ramen);
+returnSuccess($ramen, "ramen", $query);

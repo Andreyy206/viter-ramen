@@ -3,9 +3,10 @@ import React from 'react'
 import ModalWrapper from './ModalWrapper';
 import { StoreContext } from '@/components/store/storeContext';
 
-const ModalValidate = ({setIsValidate, message}) => {
-  const {dispatch } = React.useContext(StoreContext);
-  const handleClose = () => setIsValidate(false)
+const ModalValidate = () => {
+  const {dispatch, store } = React.useContext(StoreContext);
+  const handleClose = () => dispatch(setValidate(false))
+
   return (
     <ModalWrapper>
       <div className='modal-main bg-primary z-50 max-w-[350px] w-full rounded-md'>
@@ -18,7 +19,7 @@ const ModalValidate = ({setIsValidate, message}) => {
             />
           </div>
           <h2 className='mt-5 mb-3'>Validation Issue</h2>
-          <p className='mt-3 mb-5 text-balance'>
+          <p className='mt-3 mb-5 text-balance'>  
             {store.message}
           </p>
         </div>

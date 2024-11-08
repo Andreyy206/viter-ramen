@@ -1,10 +1,10 @@
 <?php
 // set http header
-require '../../../../core/header.php';
+require '../../../core/header.php';
 // use needed functions
-require '../../../../core/functions.php';
+require '../../../core/functions.php';
 // use needed classes
-require '../../../../models/developer/Dessert.php';
+require '../../../models/developer/Dessert.php';
 
 
 $body = file_get_contents("php://input");

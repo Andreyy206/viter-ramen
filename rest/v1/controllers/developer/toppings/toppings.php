@@ -4,7 +4,7 @@ require '../../../core/header.php';
 // use needed functions
 require '../../../core/functions.php';
 // use needed classes
-require '../../../models/developer/Drinks.php';
+require '../../../models/developer/Toppings.php';
 
 
 $body = file_get_contents("php://input");

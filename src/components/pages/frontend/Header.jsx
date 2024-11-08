@@ -3,11 +3,31 @@ import { ShoppingBag } from "lucide-react";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import Cart from "./Cart";
+import { StoreContext } from "@/components/store/storeContext";
+import { setIsAdd } from "@/components/store/storeAction";
 
 const Header = () => {
+  const {dispatch} = React.useContext(StoreContext)
+  const [scrollPosition, setScrollPosition] = React.useState(0)
+
+  // console.log(window.scrollY)
+  const handleScroll = () => {
+    const position = window.scrollY;
+    setScrollPosition(position);
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  })  
+
+
+  const handleOpenCart = () => dispatch(setIsAdd(true));
   return (
     <>
-      <header className={`px-4 py-2 transition-all z-50 `}>
+      <header className={`px-4 py-2 transition-all z-50 ${scrollPosition > 100 ? "fixed top-0 left-0 w-full bg-black bg-opacity-70" : ""}`}>
         <div className='flex justify-between items-center '>
           <div className=''>
             <Link to='/'>
@@ -38,13 +58,11 @@ const Header = () => {
             </li>
           </ul>
 
-          <button className='relative'>
+          <button className='relative' onClick={handleOpenCart}>
             <ShoppingBag stroke={"#fff"} />
           </button>
         </div>
       </header>
-
-      {/* <Cart /> */}
     </>
   );
 };

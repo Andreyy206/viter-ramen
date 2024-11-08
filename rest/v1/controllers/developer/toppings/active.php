@@ -4,11 +4,11 @@ require '../../../core/header.php';
 // use needed functions
 require '../../../core/functions.php';
 // use needed classes
-require '../../../models/developer/Drinks.php';
+require '../../../models/developer/Toppings.php';
 
 $conn = null;
 $conn = checkDbConnection();
-$drinks = new Drinks($conn);
+$toppings = new Toppings($conn);
 $response = new Response();
 
 $body = file_get_contents("php://input");
@@ -19,17 +19,17 @@ $returnData = [];
 
 if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
     checkApiKey();
-    if (array_key_exists("drinksid", $_GET)) {
+    if (array_key_exists("toppingsid", $_GET)) {
 
         checkPayload($data);
-        $drinks->drinks_aid = $_GET['drinksid'];
-        $drinks->drinks_is_active = trim($data["isActive"]);
-        $drinks->drinks_datetime = date("Y-m-d H:i:s");
+        $toppings->toppings_aid = $_GET['toppingsid'];
+        $toppings->toppings_is_active = trim($data["isActive"]);
+        $toppings->toppings_datetime = date("Y-m-d H:i:s");
 
-        checkId($drinks->drinks_aid);
-        $query = checkActive($drinks);
+        checkId($toppings->toppings_aid);
+        $query = checkActive($toppings);
         http_response_code(200);
-        returnSuccess($drinks, "drinks", $query);
+        returnSuccess($toppings, "toppings", $query);
     }
 
     checkEndpoint();

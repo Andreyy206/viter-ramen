@@ -8,19 +8,24 @@ import Menu from './Menu';
 import ModalToppings from './ModalToppings';
 import Dessert from './Dessert';
 import Drinks from './drinks/Drinks';
+import Cart from './Cart';
+import { StoreContext } from '@/components/store/storeContext';
 
 const Home = () => {
+  const {dispatch, store}= React.useContext(StoreContext)
+  const [cartItem, setCartItem] = React.useState([])
   return (
     <>
       <Banner />
       <Instructions />
-      <Menu/>
-      <Dessert/>
-      <Drinks/>
+      <Menu cartItem={cartItem} setCartItem={setCartItem} />
+      <Dessert />
+      <Drinks />
       <Carousel />
       <CallToAction />
       <Footer />
       {/* <ModalToppings /> */}
+      {store.isAdd && <Cart cartItem={cartItem} setCartItem={setCartItem} />}
     </>
   );
 }

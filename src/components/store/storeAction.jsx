@@ -178,3 +178,12 @@ export const setCredentials = (data) => {
     },
   };
 };
+export const setCart = (data) => {
+  return {
+    type: "CART",
+    payload: {
+      data,
+    },
+  };
+};
+

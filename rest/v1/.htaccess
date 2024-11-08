@@ -27,6 +27,13 @@ RewriteRule ^promo$ controllers/developer/settings/promo/promo.php [L]
 RewriteRule ^promo/([0-9]+)$ controllers/developer/settings/promo/promo.php?promoid=$1 [L]
 RewriteRule ^promo/active/([0-9]+)$ controllers/developer/settings/promo/active.php?promoid=$1 [L]
 
+### Ramen ###
+RewriteRule ^ramen$ controllers/developer/ramen/ramen.php [L]
+RewriteRule ^ramen/([0-9]+)$ controllers/developer/ramen/ramen.php?ramenid=$1 [L]
+RewriteRule ^ramen/active/([0-9]+)$ controllers/developer/ramen/active.php?ramenid=$1 [L]
+RewriteRule ^ramen/search$ controllers/developer/ramen/search.php [L]
+RewriteRule ^ramen/page/([0-9]+)$ controllers/developer/ramen/page.php?start=$1 [L]
+
 ### Drinks ###
 RewriteRule ^drinks$ controllers/developer/drinks/drinks.php [L]
 RewriteRule ^drinks/([0-9]+)$ controllers/developer/drinks/drinks.php?drinksid=$1 [L]
@@ -40,3 +47,12 @@ RewriteRule ^dessert/([0-9]+)$ controllers/developer/dessert/dessert.php?dessert
 RewriteRule ^dessert/active/([0-9]+)$ controllers/developer/dessert/active.php?dessertid=$1 [L]
 RewriteRule ^dessert/search$ controllers/developer/dessert/search.php [L]
 RewriteRule ^dessert/page/([0-9]+)$ controllers/developer/dessert/page.php?start=$1 [L]
+
+### Toppings ###
+RewriteRule ^toppings$ controllers/developer/toppings/toppings.php [L]
+RewriteRule ^toppings/([0-9]+)$ controllers/developer/toppings/toppings.php?toppingsid=$1 [L]
+RewriteRule ^toppings/active/([0-9]+)$ controllers/developer/toppings/active.php?toppingsid=$1 [L]
+RewriteRule ^toppings/search$ controllers/developer/toppings/search.php [L]
+RewriteRule ^toppings/page/([0-9]+)$ controllers/developer/toppings/page.php?start=$1 [L]
+
+
