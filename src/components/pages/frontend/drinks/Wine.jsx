@@ -1,9 +1,36 @@
+import useQueryData from "@/components/custom-hook/useQueryData";
 import { Plus } from "lucide-react";
 import React from "react";
 import SpinnerMenu from "../../backend/partials/spinners/SpinnerMenu";
+import { setMessage, setSuccess } from "@/components/store/storeAction";
+import ToastSuccess from "../../backend/partials/ToastSuccess";
+import { StoreContext } from "@/components/store/storeContext";
 
-const Wine = ({ result, isLoading }) => {
-  const getAllWine = result?.data.length > 0 && result?.data.filter((item) => item.drinks_category === "Wine" )
+const Wine = ({ result, isLoading, setDrinksCart, drinksCart }) => {
+  const { store, dispatch } = React.useContext(StoreContext);
+  const getAllWine =
+    result?.data.length > 0 &&
+    result?.data.filter((item) => item.drinks_category === "Wine");
+
+  const handleAddDrinks = (item) => {
+    const exist = drinksCart.find(
+      (drink) => drink.drinks_aid === item.drinks_aid
+    );
+
+    if (exist !== undefined) {
+      setDrinksCart(
+        drinksCart.map((drink) =>
+          drink.drinks_aid === item.drinks_aid
+            ? { ...exist, quantity: exist.quantity + 1 }
+            : drink
+        )
+      );
+    } else {
+      setDrinksCart([...drinksCart, { ...item, quantity: 1 }]);
+    }
+    dispatch(setSuccess(true));
+    dispatch(setMessage("Added to Cart!"));
+  };
 
   return (
     <>
@@ -18,14 +45,17 @@ const Wine = ({ result, isLoading }) => {
               className='grid-item grid grid-cols-[1fr,_100px,_100px] items-center text-black'
               key={key}
             >
-              <div> 
+              <div>
                 <h5 className='mb-0 text-black '>{item.drinks_title}</h5>
                 <small>{item.drinks_description}</small>
               </div>
               <p className='font-bold text-2xl justify-self-center'>
                 {item.drinks_price}
               </p>
-              <button className='bg-accent text-white  justify-self-center rounded-md px-2 py-1.5'>
+              <button
+                className='bg-accent text-white  justify-self-center rounded-md px-2 py-1.5'
+                onClick={() => handleAddDrinks(item)}
+              >
                 <Plus />
               </button>
             </div>

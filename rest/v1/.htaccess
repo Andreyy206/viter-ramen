@@ -55,4 +55,12 @@ RewriteRule ^toppings/active/([0-9]+)$ controllers/developer/toppings/active.php
 RewriteRule ^toppings/search$ controllers/developer/toppings/search.php [L]
 RewriteRule ^toppings/page/([0-9]+)$ controllers/developer/toppings/page.php?start=$1 [L]
 
+### Transaction ###
+RewriteRule ^transaction$ controllers/developer/transaction/transaction.php [L]
+RewriteRule ^transaction/([0-9]+)$ controllers/developer/transaction/transaction.php?transactionid=$1 [L]
+RewriteRule ^transaction/active/([0-9]+)$ controllers/developer/transaction/active.php?transactionid=$1 [L]
+RewriteRule ^transaction/search$ controllers/developer/transaction/search.php [L]
+RewriteRule ^transaction/page/([0-9]+)$ controllers/developer/transaction/page.php?start=$1 [L]
+
+
 

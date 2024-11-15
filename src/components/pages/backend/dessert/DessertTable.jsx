@@ -1,31 +1,29 @@
-import {
-  Archive,
-  ArchiveRestore,
-  FilePenLine,
-  Pencil,
-  Plus,
-  Search,
-  Trash,
-} from "lucide-react";
-import React from "react";
-import LoaderTable from "../partials/LoaderTable";
-import NoData from "../partials/icons/NoData";
-import ServerError from "../partials/icons/ServerError";
-import { StoreContext } from "@/components/store/storeContext";
-import SearchBar from "../partials/SearchBar";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import Loadmore from "../partials/LoadMore";
-import { useInView } from "react-intersection-observer";
 import { queryDataInfinite } from "@/components/helpers/queryDataInfinite";
-import Pill from "../partials/Pill";
 import {
   setIsAdd,
   setIsConfirm,
   setIsDelete,
 } from "@/components/store/storeAction";
+import { StoreContext } from "@/components/store/storeContext";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import {
+  Archive,
+  ArchiveRestore,
+  Pencil,
+  Plus,
+  Trash
+} from "lucide-react";
+import React from "react";
+import { useInView } from "react-intersection-observer";
+import Loadmore from "../partials/LoadMore";
+import LoaderTable from "../partials/LoaderTable";
+import Pill from "../partials/Pill";
+import SearchBar from "../partials/SearchBar";
+import ToastSuccess from "../partials/ToastSuccess";
+import NoData from "../partials/icons/NoData";
+import ServerError from "../partials/icons/ServerError";
 import ModalConfirm from "../partials/modals/ModalConfirm";
 import ModalDelete from "../partials/modals/ModalDelete";
-import ToastSuccess from "../partials/ToastSuccess";
 import ModalValidate from "../partials/modals/ModalValidate";
 import DessertModalAdd from "./DessertModalAdd";
 
@@ -117,7 +115,7 @@ const DessertTable = () => {
               <tr>
                 <td className='w-[30px]'>#</td>
                 <td className='w-[80px]'>Status</td>
-                <td>Title</td>
+                <td>Tit le</td>
                 <td>Price</td>
               </tr>
             </thead>

@@ -13,19 +13,66 @@ import { StoreContext } from '@/components/store/storeContext';
 
 const Home = () => {
   const {dispatch, store}= React.useContext(StoreContext)
+  const [showToppings, setShowToppings] = React.useState(false)
+  const [ramenCart, setRamenCart] = React.useState([]);
+  const [dessertCart, setDessertCart] = React.useState([]);
+  const [drinksCart, setDrinksCart] = React.useState([]);
+  const [toppingsCart, setToppingsCart] = React.useState([]);
   const [cartItem, setCartItem] = React.useState([])
+  const [totals, setTotals] = React.useState({
+    ramen: "",
+    drinks: "",
+    dessert: "",
+    toppings: "",
+  });
+
   return (
     <>
-      <Banner />
+      <Banner
+        ramenCart={ramenCart}
+        dessertCart={dessertCart}
+        drinksCart={drinksCart}
+        toppingsCart={toppingsCart}
+      />
+
       <Instructions />
-      <Menu cartItem={cartItem} setCartItem={setCartItem} />
-      <Dessert />
-      <Drinks />
+      <Menu
+        cartItem={cartItem}
+        setCartItem={setCartItem}
+        ramenCart={ramenCart}
+        setRamenCart={setRamenCart}
+        setShowToppings={setShowToppings}
+      />
+
+      <Dessert dessertCart={dessertCart} setDessertCart={setDessertCart} />
+      <Drinks drinksCart={drinksCart} setDrinksCart={setDrinksCart} />
       <Carousel />
       <CallToAction />
       <Footer />
-      {/* <ModalToppings /> */}
-      {store.isAdd && <Cart cartItem={cartItem} setCartItem={setCartItem} />}
+
+      {showToppings && (
+        <ModalToppings
+          setShowToppings={setShowToppings}
+          setToppingsCart={setToppingsCart}
+          toppingsCart={toppingsCart}
+        />
+      )}
+
+
+      {store.isAdd && (
+        <Cart
+          ramenCart={ramenCart}
+          setRamenCart={setRamenCart}
+          dessertCart={dessertCart}
+          setDessertCart={setDessertCart}
+          drinksCart={drinksCart}
+          setDrinksCart={setDrinksCart}
+          toppingsCart={toppingsCart}
+          setToppingsCart={setToppingsCart}
+          setTotals={setTotals}
+          totals={totals}
+        />
+      )}
     </>
   );
 }

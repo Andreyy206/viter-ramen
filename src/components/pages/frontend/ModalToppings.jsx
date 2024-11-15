@@ -6,8 +6,8 @@ import SpinnerMenu from "../backend/partials/spinners/SpinnerMenu";
 import { setSuccess } from "@/components/store/storeAction";
 import { StoreContext } from "@/components/store/storeContext";
 
-const ModalToppings = (setShowToppings, cartItem, setCartItem) => {
-  const {dispatch} = React.useContext(StoreContext)
+const ModalToppings = ({ setShowToppings, setToppingsCart, toppingsCart }) => {
+  const { dispatch } = React.useContext(StoreContext);
   const {
     isLoading,
     isFetching,
@@ -20,19 +20,20 @@ const ModalToppings = (setShowToppings, cartItem, setCartItem) => {
   );
 
   const handleAddItem = (item) => {
-
-    const exist = cartItem.find((cart) => cart.toppings_aid === item.toppings_aid);
+    const exist = toppingsCart.find(
+      (cart) => cart.toppings_aid === item.toppings_aid
+    );
 
     if (exist !== undefined) {
-      setCartItem(
-        cartItem.map((cart) =>
+      setToppingsCart(
+        toppingsCart.map((cart) =>
           cart.toppings_aid === item.toppings_aid
             ? { ...exist, quantity: exist.quantity + 1 }
             : cart
         )
       );
     } else {
-      setCartItem([...cartItem, { ...item, quantity: 1 }]);
+      setToppingsCart([...toppingsCart, { ...item, quantity: 1 }]);
     }
     dispatch(setSuccess(true));
     setShowToppings(true);
@@ -43,7 +44,7 @@ const ModalToppings = (setShowToppings, cartItem, setCartItem) => {
       <div className='modal-main bg-white text-black p-4 rounded-md z-50 max-w-[900px] w-full'>
         <div className='modal-header flex justify-between pb-1 mb-2 border-b border-gray-200'>
           <h5 className='text-black mb-0'>Add Toppings</h5>
-          <button onClick={() => setShowToppings(false)} >
+          <button onClick={() => setShowToppings(false)}>
             <X />
           </button>
         </div>
@@ -68,7 +69,10 @@ const ModalToppings = (setShowToppings, cartItem, setCartItem) => {
                     </small>
                   </div>
                   <span>{item.toppings_price}</span>
-                  <button className='size-[25px] grid place-content-center bg-accent text-white rounded-full' onClick={() => handleAddItem(item)}>
+                  <button
+                    className='size-[25px] grid place-content-center bg-accent text-white rounded-full'
+                    onClick={() => handleAddItem(item)}
+                  >
                     <Plus size={16} />
                   </button>
                 </div>
